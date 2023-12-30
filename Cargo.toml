@@ -1,7 +1,7 @@
 [package]
 name = "remotend"
 version = "1.2.5"
-authors = ["remotend <info@remotend.com>"]
+authors = ["remotend <infos@remotend.com>"]
 edition = "2021"
 build= "build.rs"
 description = "remote control software."
