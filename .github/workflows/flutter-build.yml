@@ -1,4 +1,4 @@
-name: Build the flutter version of the remotend
+name: Build the flutter version of all the remotend
 
 on:
   workflow_call:
