@@ -1,10 +1,10 @@
 [package]
 name = "remotend"
-version = "1.2.4"
+version = "1.2.5"
 authors = ["remotend <info@remotend.com>"]
 edition = "2021"
 build= "build.rs"
-description = "A remote control software."
+description = "remote control software."
 default-run = "remotend"
 rust-version = "1.75"
 
@@ -154,9 +154,9 @@ members = ["libs/scrap", "libs/hbb_common", "libs/enigo", "libs/clipboard", "lib
 exclude = ["vdi/host", "examples/custom_plugin"]
 
 [package.metadata.winres]
-LegalCopyright = "Copyright © 2023 Purslane, Inc."
+LegalCopyright = "Copyright © 2023 NVD, Inc."
 # this FileDescription overrides package.description
-FileDescription = "RustDesk"
+FileDescription = "Remotend"
 
 [target.'cfg(target_os="windows")'.build-dependencies]
 winres = "0.1"
@@ -172,7 +172,7 @@ hound = "3.5"
 
 [package.metadata.bundle]
 name = "Remotend"
-identifier = "com.carriez.rustdesk"
+identifier = "com.carriez.Remotend"
 icon = ["res/32x32.png", "res/128x128.png", "res/128x128@2x.png"]
 osx_minimum_system_version = "10.14"
 
