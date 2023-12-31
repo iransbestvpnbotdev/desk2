@@ -1000,7 +1000,7 @@ void msgBox(SessionID sessionId, String type, String title, String text,
   bool hasOk = false;
   submit() {
     dialogManager.dismissAll();
-    // https://github.com/fufesou/rustdesk/blob/5e9a31340b899822090a3731769ae79c6bf5f3e5/src/ui/common.tis#L263
+    // https://github.com/fufesou/Remotend/blob/5e9a31340b899822090a3731769ae79c6bf5f3e5/src/ui/common.tis#L263
     if (!type.contains("custom") && desktopType != DesktopType.portForward) {
       closeConnection();
     }
@@ -1713,7 +1713,7 @@ Future<Offset?> _adjustRestoreMainWindowOffset(
 Future<bool> restoreWindowPosition(WindowType type,
     {int? windowId, String? peerId, int? display}) async {
   if (bind
-      .mainGetEnv(key: "DISABLE_RUSTDESK_RESTORE_WINDOW_POSITION")
+      .mainGetEnv(key: "DISABLE_REMOTEND_RESTORE_WINDOW_POSITION")
       .isNotEmpty) {
     return false;
   }
@@ -1885,7 +1885,7 @@ bool handleUriLink({List<String>? cmdArgs, Uri? uri, String? uriString}) {
   List<String>? args;
   if (cmdArgs != null && cmdArgs.isNotEmpty) {
     args = cmdArgs;
-    // rustdesk <uri link>
+    // Remotend <uri link>
     if (args[0].startsWith(kUniLinksPrefix)) {
       final uri = Uri.tryParse(args[0]);
       if (uri != null) {
@@ -2035,9 +2035,9 @@ List<String>? urlLinkToCmdArgs(Uri uri) {
   } else if (uri.authority.length > 2 &&
       (uri.path.length <= 1 ||
           (uri.path == '/r' || uri.path.startsWith('/r@')))) {
-    // rustdesk://<connect-id>
-    // rustdesk://<connect-id>/r
-    // rustdesk://<connect-id>/r@<server>
+    // Remotend://<connect-id>
+    // Remotend://<connect-id>/r
+    // Remotend://<connect-id>/r@<server>
     command = '--connect';
     id = uri.authority;
     if (uri.path.length > 1) {
@@ -2239,7 +2239,7 @@ Future<void> onActiveWindowChanged() async {
     } catch (err) {
       debugPrintStack(label: "$err");
     } finally {
-      debugPrint("Start closing RustDesk...");
+      debugPrint("Start closing Remotend...");
       await windowManager.setPreventClose(false);
       await windowManager.close();
       if (Platform.isMacOS) {
@@ -2337,7 +2337,7 @@ class ServerConfig {
     this.key = key?.trim() ?? '';
   }
 
-  /// decode from shared string (from user shared or rustdesk-server generated)
+  /// decode from shared string (from user shared or remotend-server generated)
   /// also see [encode]
   /// throw when decoding failure
   ServerConfig.decode(String msg) {
@@ -2428,17 +2428,17 @@ int versionCmp(String v1, String v2) {
 String getWindowName({WindowType? overrideType}) {
   switch (overrideType ?? kWindowType) {
     case WindowType.Main:
-      return "RustDesk";
+      return "Remotend";
     case WindowType.FileTransfer:
-      return "File Transfer - RustDesk";
+      return "File Transfer - Remotend";
     case WindowType.PortForward:
-      return "Port Forward - RustDesk";
+      return "Port Forward - Remotend";
     case WindowType.RemoteDesktop:
-      return "Remote Desktop - RustDesk";
+      return "Remote Desktop - Remotend";
     default:
       break;
   }
-  return "RustDesk";
+  return "Remotend";
 }
 
 String getWindowNameWithId(String id, {WindowType? overrideType}) {
