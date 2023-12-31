@@ -13,7 +13,7 @@ import sys
 windows = platform.platform().startswith('Windows')
 osx = platform.platform().startswith(
     'Darwin') or platform.platform().startswith("macOS")
-hbb_name = 'remotend' + ('.exe' if windows else '')
+hbb_name = 'rustdesk' + ('.exe' if windows else '')
 exe_path = 'target/release/' + hbb_name
 if windows:
     flutter_build_dir = 'build/windows/runner/Release/'
@@ -291,13 +291,13 @@ def generate_control_file(version):
     control_file_path = "../res/DEBIAN/control"
     system2('/bin/rm -rf %s' % control_file_path)
 
-    content = """Package: remotend
+    content = """Package: rustdesk
 Version: %s
 Architecture: %s
-Maintainer: remotend <info@remotend.com>
-Homepage: https://jobbusy.com
+Maintainer: rustdesk <info@rustdesk.com>
+Homepage: https://rustdesk.com
 Depends: libgtk-3-0, libxcb-randr0, libxdo3, libxfixes3, libxcb-shape0, libxcb-xfixes0, libasound2, libsystemd0, curl, libva-drm2, libva-x11-2, libvdpau1, libgstreamer-plugins-base1.0-0, libpam0g, libappindicator3-1, gstreamer1.0-pipewire
-Description:remote control software.
+Description: A remote control software.
 
 """ % (version, get_arch())
     file = open(control_file_path, "w")
@@ -445,10 +445,10 @@ def build_flutter_windows(version, features):
         f'python3 ./generate.py -f ../../{flutter_build_dir_2} -o . -e ../../{flutter_build_dir_2}/rustdesk.exe')
     os.chdir('../..')
     if os.path.exists('./rustdesk_portable.exe'):
-        os.replace('./target/release/rustdesk-portable-packer.exe',
+        os.replace('./target/release/remotend-portable-packer.exe',
                    './rustdesk_portable.exe')
     else:
-        os.rename('./target/release/rustdesk-portable-packer.exe',
+        os.rename('./target/release/remotend-portable-packer.exe',
                   './rustdesk_portable.exe')
     print(
         f'output location: {os.path.abspath(os.curdir)}/rustdesk_portable.exe')
